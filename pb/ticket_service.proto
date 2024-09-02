@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package ticketservice;
+
+option go_package = "./ticketservice";
+
+service TicketService {
+  rpc CheckAvailability (Empty) returns (AvailabilityResponse) {}
+  rpc ReserveTicket (ReserveRequest) returns (ReserveResponse) {}
+  rpc GetRemainingTickets (Empty) returns (RemainingTicketsResponse) {}
+}
+
+message Empty {}
+
+message AvailabilityResponse {
+  bool available = 1;
+}
+
+message ReserveRequest {
+  int32 user_id = 1;
+}
+
+message ReserveResponse {
+  bool success = 1;
+}
+
+message RemainingTicketsResponse {
+  int32 count = 1;
+}
